@@ -16,6 +16,10 @@ import javax.swing.*;
 public class Bird {
     JButton bird = new JButton();
     int y = 250;
+    int x = 175;
+    int WIDTH = 30;
+    int HEIGHT = 30;
+    
     Timer t1 = new Timer();
     public void Gravity(){
          t1.scheduleAtFixedRate(new TimerTask() {
@@ -34,5 +38,23 @@ public class Bird {
     }
     public void Position(){
         
+    }
+    
+    //method to draw the "bird" to the game screen, updating its position
+    public void draw(){
+        
+    }
+    
+    //method to allow "bird" to "jump" (move upwards) to navigate through the
+    //game board
+    public void jump(){
+        
+        bird.setBounds(x, y, WIDTH, HEIGHT);
+    }
+    
+    //method to change y position of the "bird"
+    public int setYPos(int change){
+      y = y + change;
+      return y;  
     }
 }
