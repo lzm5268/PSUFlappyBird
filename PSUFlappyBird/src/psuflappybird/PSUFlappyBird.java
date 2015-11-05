@@ -5,17 +5,33 @@
  */
 package psuflappybird;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import static java.awt.PageAttributes.ColorType.COLOR;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 /**
  *
  * @author lzm5268
  */
 public class PSUFlappyBird {
+ 
 
     /**
      * @param args the command line arguments
      */
+    
+    
     public static void main(String[] args) {
+        
+        PipeFrame thisPipeFrame = new PipeFrame();
+        
+        
+        //thisPipe.draw(g);
         // TODO code application logic here
     }
+    
+    
     
 }
