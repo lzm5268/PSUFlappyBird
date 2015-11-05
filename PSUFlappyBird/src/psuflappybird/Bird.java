@@ -9,6 +9,15 @@ package psuflappybird;
  *
  * @author jrc5713
  */
+
 public class Bird {
-    
+    public void Gravity(){
+        
+    }
+    public void Image(){
+        
+    }
+    public void Position(){
+        
+    }
 }
