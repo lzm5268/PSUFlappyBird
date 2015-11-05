@@ -5,10 +5,28 @@
  */
 package psuflappybird;
 
-/**
- *
- * @author jrc5713
- */
-public class Game {
+//importing 
+import javax.swing.*;
+import javax.swing.border.*;
+import javax.accessibility.*;
+ 
+import java.awt.*;
+import java.awt.event.*;
+
+//creating layered panels to handle each of the objects (background, pipes, bird, highScore) 
+//using ImageIcons to be the pipes, bird, and foot/iconToCollect
+
+
+
+
+public class Game extends JPanel {
+
+    private Bird b; 
+    private Pipe p; 
+    private Coin c; 
+    
+    private JFrame baseFrame;
+    private JPanel gamePanel; 
+    private JPanel resetPanel; 
     
 }

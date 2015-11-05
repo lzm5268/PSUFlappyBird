@@ -7,16 +7,8 @@ package psuflappybird;
 
 /**
  *
- * @author lzm5268
+ * @author mzk5401
  */
-public class PSUFlappyBird {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Home h = new Home(); 
-        h.setVisible(true);
-    }
+public class Coin {
     
 }
