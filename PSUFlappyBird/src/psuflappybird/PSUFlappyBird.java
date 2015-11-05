@@ -24,12 +24,16 @@ public class PSUFlappyBird {
     
     
     public static void main(String[] args) {
+<<<<<<< Updated upstream
         
         PipeFrame thisPipeFrame = new PipeFrame();
         
         
         //thisPipe.draw(g);
         // TODO code application logic here
+=======
+        // TODO code application logic here hi
+>>>>>>> Stashed changes
     }
     
     
