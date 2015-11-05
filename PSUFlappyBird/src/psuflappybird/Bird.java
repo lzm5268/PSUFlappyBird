@@ -19,13 +19,15 @@ import javax.swing.*;
 
 public class Bird {
     JButton bird = new JButton();
-    int y = 250;
-    int x = 175;
-    int WIDTH = 30;
-    int HEIGHT = 30;
+    private int y = 250;
+    private int x = 175;
+    private int WIDTH = 30;
+    private int HEIGHT = 30;
+    private int jumpAmount = 10;
+    private int gravity = -10;
     
     public void Gravity(){
-
+        this.setYPos(gravity);
     }
     public void Image(){
        BufferedImage bird = null;
@@ -34,9 +36,6 @@ public class Bird {
             } 
         catch (IOException e) {
     } 
-    }
-    public void Position(){
-        
     }
     
     //method to draw the "bird" to the game screen, updating its position
@@ -47,12 +46,12 @@ public class Bird {
     //method to allow "bird" to "jump" (move upwards) to navigate through the
     //game board
     public void jump(){
-        
+        this.setYPos(jumpAmount);
         bird.setBounds(x, y, WIDTH, HEIGHT);
     }
     
     //method to change y position of the "bird"
-    public int setYPos(int change){
+    private int setYPos(int change){
       y = y + change;
       return y;  
     }
