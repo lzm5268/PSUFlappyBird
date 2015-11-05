@@ -5,7 +5,11 @@
  */
 package psuflappybird;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -20,21 +24,16 @@ public class Bird {
     int WIDTH = 30;
     int HEIGHT = 30;
     
-    Timer t1 = new Timer();
     public void Gravity(){
-         t1.scheduleAtFixedRate(new TimerTask() {
-             int count = 0;
-         public void run() {
-         y = y - 50;
-         bird.setBounds(y, 40, 40);
-         gamePanel.repaint();
-         count ++;
-            }
-        }, 500, 500);
-        
+
     }
     public void Image(){
-        
+       BufferedImage bird = null;
+        try {
+        bird = ImageIO.read(new File("football.gif"));
+            } 
+        catch (IOException e) {
+    } 
     }
     public void Position(){
         
