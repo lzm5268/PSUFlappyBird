@@ -24,10 +24,10 @@ public class PSUFlappyBird {
     
     
     public static void main(String[] args) {
-        Home h = new Home(); 
-        h.setVisible(true);
+        Home g = new Home(); 
+        g.setVisible(true);
         
-        PipeFrame thisPipeFrame = new PipeFrame();
+       // PipeFrame thisPipeFrame = new PipeFrame();
         
         
         //thisPipe.draw(g);
