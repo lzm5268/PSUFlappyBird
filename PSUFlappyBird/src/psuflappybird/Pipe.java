@@ -7,6 +7,7 @@ package psuflappybird;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -22,22 +23,17 @@ public class Pipe extends JPanel{
     int topBound = opening;
     int bottomBound = opening + 150;
     
+    Rectangle top; 
+    Rectangle bottom;
+
     public Pipe(){
-        
-        
+      
     }
     
-    public void paintComponent(Graphics g){
-        super.paintComponent(g);
-        g.setColor(Color.yellow);
-        g.fillRect(100, 0, 100, topBound);
-        g.setColor(Color.yellow);
-        g.fillRect(100, bottomBound, 100, (600-bottomBound));
+    public void makeRectangles(){
+        top = new Rectangle(900,0,100,topBound);
+        bottom = new Rectangle(900, bottomBound, 100, (600-bottomBound));
     }
-    
-    
-        
-    
     
     public static int createOpening(){
         int max = 500;
@@ -46,5 +42,21 @@ public class Pipe extends JPanel{
         int upperBound = rand.nextInt(max - min)+1;
         
         return upperBound;
+    }
+    
+    public Rectangle getTopRectangle(){
+        return top;
+    }
+    
+    public Rectangle getBottomRectangle(){
+        return bottom;
+    }
+    
+    public void setTopRectangle(Rectangle top){
+        this.top = top;
+    }
+    
+    public void setBottomRectangle(Rectangle bottom){
+        this.bottom = bottom; 
     }
 }
