@@ -32,7 +32,7 @@ public class PSUFlappyBird {
        // PipeFrame thisPipeFrame = new PipeFrame();
         
 
-        PipeFrame thisPipeFrame = new PipeFrame();
+        
         BirdFrame birdF = new BirdFrame();
 
         
