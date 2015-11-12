@@ -18,7 +18,7 @@ import java.awt.event.*;
 //      startGame()
 
 public class Home extends JPanel {
-    private JFrame fullFrame;
+    //private JPanel fullPanel;
     private JTextField nameField;
     private JButton startButton; 
     private JTextArea directions;
@@ -36,10 +36,10 @@ public class Home extends JPanel {
 
     public void initComponents() {
         //include nameField and startButton
-        fullFrame = new JFrame("PSU Flappy Bird");
-        fullFrame.setSize(900, 600);
-        fullFrame.setLayout(new BorderLayout());
-        fullFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        setSize(900, 600);
+        setLayout(new BorderLayout());
+        //fullPanel.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         startPanel = new JPanel();
         //startPanel.setLayout(new FlowLayout());
@@ -68,14 +68,14 @@ public class Home extends JPanel {
         startPanel.add(startButton);
 
         //fullFrame.setLocationRelativeTo(null);
-        fullFrame.add(startPanel, BorderLayout.SOUTH);
-        fullFrame.add(directionsPanel, BorderLayout.NORTH);
-        fullFrame.setVisible(true);
+        add(startPanel, BorderLayout.SOUTH);
+        add(directionsPanel, BorderLayout.NORTH);
+        setVisible(true);
         
     }
     
     public void startGame(){
-        fullFrame.dispose(); 
+        setVisible(false);
         Game g = new Game(); 
         g.setVisible(true);
         
