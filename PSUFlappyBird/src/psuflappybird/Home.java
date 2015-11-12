@@ -75,8 +75,14 @@ public class Home extends JPanel {
     }
     
     public void startGame(){
+<<<<<<< HEAD
         setVisible(false);
         Game g = new Game(); 
+=======
+        fullFrame.dispose(); 
+        //Game g = new Game(); 
+        PipeFrame g = new PipeFrame();
+>>>>>>> origin/master
         g.setVisible(true);
         
     }
