@@ -7,6 +7,9 @@ public class BirdFrame extends JFrame
 {
 	JPanel birdP;
         Bird birdy;
+        Coin coin;
+        public ImageIcon myImage;
+    public Image coin1;
         
 	public BirdFrame ()
 	{
@@ -15,10 +18,10 @@ public class BirdFrame extends JFrame
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(birdP,"Center");
                 birdy = new Bird();
-                getContentPane().add(birdy);
+                coin = new Coin();
+               //getContentPane().add(coin);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize (1050, 1000);
 		setVisible(true);
-                
 	}
 }
