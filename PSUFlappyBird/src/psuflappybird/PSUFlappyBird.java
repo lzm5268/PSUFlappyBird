@@ -32,24 +32,15 @@ public class PSUFlappyBird {
         MainFrame mainFrame = new MainFrame();
         
        // PipeFrame thisPipeFrame = new PipeFrame();
-        
 
-<<<<<<< HEAD
         //PipeFrame thisPipeFrame = new PipeFrame();
         //BirdFrame birdF = new BirdFrame();
 
-
-
-        
-        
-         
         //h.setVisible(true);
        
         //BirdFrame birdF = new BirdFrame();
-=======
         
         BirdFrame birdF = new BirdFrame();
->>>>>>> origin/master
 
         
         //thisPipe.draw(g);
