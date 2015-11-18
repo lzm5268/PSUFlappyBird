@@ -6,10 +6,7 @@ import javax.swing.*;
 public class BirdFrame extends JFrame
 {
 	JPanel birdP;
-        Bird birdy;
-        Coin coin;
-        public ImageIcon myImage;
-    public Image coin1;
+        Bird bird;
         
 	public BirdFrame ()
 	{
@@ -17,9 +14,9 @@ public class BirdFrame extends JFrame
                 birdP = new JPanel();
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(birdP,"Center");
-                birdy = new Bird();
-                coin = new Coin();
-               //getContentPane().add(coin);
+               
+                bird.draw(g);
+                
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize (1050, 1000);
 		setVisible(true);
