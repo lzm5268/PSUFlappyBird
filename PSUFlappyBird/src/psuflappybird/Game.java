@@ -84,6 +84,10 @@ public class Game extends JPanel {
                     g.fillRect((int)top.getX(), (int)top.getY(), (int)top.getWidth(), (int)top.getHeight());
                     g.fillRect((int)bottom.getX(), (int)bottom.getY(), (int)bottom.getWidth(), (int)bottom.getHeight());
                     
+                    //try to make bird show up on screen
+                    Bird b1 = new Bird();
+                    b1.draw(g);
+                    
                     //if it is the last pipe in the array, and it's moved far enough
                     //make another pipe
                     //number after top.getx() is the space between pipes
@@ -155,4 +159,5 @@ public class Game extends JPanel {
         baseFrame.add(gamePanel);
         baseFrame.setVisible(true);
     }
+   
 }
