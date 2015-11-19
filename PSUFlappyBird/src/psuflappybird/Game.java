@@ -25,6 +25,10 @@ public class Game extends JPanel {
     private Pipe p; 
     private Coin c; 
     
+    private ArrayList<Rectangle> pipesOnScreenTop = new ArrayList<Rectangle>();
+    private ArrayList<Rectangle> pipesOnScreenBot = new ArrayList<Rectangle>();
+    
+    
     private JFrame baseFrame;
     private JPanel gamePanel; 
     private JPanel resetPanel; 
@@ -34,6 +38,10 @@ public class Game extends JPanel {
     
     private int x = 900;
     private int y = 600;
+    private double topX; 
+    private double topY; 
+    private double botY; 
+    private double botX;
     
     Graphics g;
     
@@ -51,12 +59,53 @@ public class Game extends JPanel {
         p.makeRectangles();
         top = p.getTopRectangle(); 
         bottom = p.getBottomRectangle();
+        
+        
+        topX = top.getX(); 
+        topY = top.getY();
+        botX = bottom.getX(); 
+        botY = bottom.getY(); 
+        
+        pipesOnScreenTop.add(top);
+        pipesOnScreenBot.add(bottom);
+        
         gamePanel = new JPanel() {
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
+                
+                //for all the pipes on the screen
+                for(int i = 0; i < pipesOnScreenTop.size(); i++){
+                    //get the top rectangle
+                    top = pipesOnScreenTop.get(i);
+                    //get the bot rectangle
+                    bottom = pipesOnScreenBot.get(i);
+                    //fill the top and bottom boxes
+                    g.fillRect((int)top.getX(), (int)top.getY(), (int)top.getWidth(), (int)top.getHeight());
+                    g.fillRect((int)bottom.getX(), (int)bottom.getY(), (int)bottom.getWidth(), (int)bottom.getHeight());
+                    
+                    //if it is the last pipe in the array, and it's moved far enough
+                    //make another pipe
+                    if((i == pipesOnScreenTop.size()-1) && top.getX() < 650) {
+                        Pipe p = new Pipe(); 
+                        p.makeRectangles();
+                        top = p.getTopRectangle(); 
+                        bottom = p.getBottomRectangle();
+                        pipesOnScreenTop.add(top);
+                        pipesOnScreenBot.add(bottom);     
+                    }
+                    
+                    //if the pipe is off screen, get rid of it in array 
+                    if( top.getX() == 0){
+                        pipesOnScreenTop.remove(i);
+                        pipesOnScreenBot.remove(i);
+                        System.out.println(pipesOnScreenTop.size());
+                    }
+                    
+                }
+                //drawing one pipe
                 g.setColor(Color.yellow);
-                g.fillRect((int)top.getX(), (int) top.getY(), (int)top.getWidth(), (int)top.getHeight());
-                g.fillRect((int)bottom.getX(), (int) bottom.getY(), (int)bottom.getWidth(), (int)bottom.getHeight());
+                g.fillRect((int)topX, (int)topY, (int)top.getWidth(), (int)top.getHeight());
+                g.fillRect((int)botX, (int)botY, (int)bottom.getWidth(), (int)bottom.getHeight());
             }
         };
         
@@ -65,8 +114,6 @@ public class Game extends JPanel {
         
         gamePanel.setBackground(Color.red);
         
-
-
     }
     
 
@@ -75,14 +122,24 @@ public class Game extends JPanel {
         movePipes.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run(){
-                top.setLocation((int)top.getX()-50, (int)top.getY());
-                g.fillRect((int)top.getX(), (int) top.getY(), (int)top.getWidth(), (int)top.getHeight());
+                //want to reset back 
+                //get the Pipe from the array
+                //set top x
+                //set bot x 
+                for(int i = 0; i < pipesOnScreenTop.size(); i++){
+                    //move the top rectangle
+                    top = pipesOnScreenTop.get(i);
+                    top.setLocation((int)top.getX()-1, (int)top.getY());
+                    //move the bot rectangle
+                    bottom = pipesOnScreenBot.get(i);
+                    bottom.setLocation((int)bottom.getX()-1, (int)bottom.getY());
+                }
+                
                 gamePanel.repaint();
             }
-        }, 100,100);
+        }, 20,20);
     }
     
-   
     
     public void makeFrame(){
         baseFrame = new JFrame("PSU Flappy Bird");
