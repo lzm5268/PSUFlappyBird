@@ -21,8 +21,8 @@ public class Bird extends Rectangle{
     
         ImageIcon myImage;
         private int DIAMETER = 25;					//Diameter of the bird
-	private int X = ( Game.WIDTH / 2 ) - ( DIAMETER / 2 );		//The x position of the bird. Should be exactly centered  
-	private int y =  Game.HEIGHT / 2;				//The STARTING y position of the bird. Will change constantly
+	private int X = 300;//( Game.WIDTH / 2 ) - ( DIAMETER / 2 );		//The x position of the bird. Should be exactly centered  
+	private int y =  300;//Game.HEIGHT / 2;				//The STARTING y position of the bird. Will change constantly
 	private int acceleration = 1;					//Used in the gravity simulation below
 	private int speed = 2;		
     
@@ -61,3 +61,4 @@ public class Bird extends Rectangle{
 		 return new Rectangle(X, y, DIAMETER, DIAMETER);		//Gives a rectangle used to detect collisions in the Wall class
 		}
 }
+//
