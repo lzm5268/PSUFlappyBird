@@ -1,69 +1,63 @@
 
 package psuflappybird;
 
-import java.awt.*;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
 import javax.imageio.ImageIO;
+import javax.swing.Timer;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
+import java.util.*;
+import javax.imageio.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.net.*;
 
 /**
  *
  * @author jrc5713
  */
 
-public class Bird extends JPanel{
+public class Bird extends Rectangle{
     
+        ImageIcon myImage;
+        private int DIAMETER = 25;					//Diameter of the bird
+	private int X = ( Game.WIDTH / 2 ) - ( DIAMETER / 2 );		//The x position of the bird. Should be exactly centered  
+	private int y =  Game.HEIGHT / 2;				//The STARTING y position of the bird. Will change constantly
+	private int acceleration = 1;					//Used in the gravity simulation below
+	private int speed = 2;		
     
-    private int y = 250;
-    private int x = 175;
-    private int WIDTH = 30;
-    private int HEIGHT = 30;
-    private int jumpAmount = 10;
-    private int gravity = -10;
     public Bird(){
-        
     }
-    
     public void Gravity(){
-        this.setYPos(gravity);
+        //only moves if the bird is between the top and bottom of the window
+		if ( ( y > 0 ) && ( y < Game.HEIGHT )) {
+			speed += acceleration;	//the gravity,the speed is just increased by 1 all the time, even after a jump
+			y += speed;	//The actual movement, y location equals (where it was) + (how far it should go)
+		}
+		//or else the game resets
+		else {
+			reset();											//rests bird's postion									//bird is dead! This is used in the Main method to reset the walls after a death
+		}
     }
-    public void Image(){
-       
-      
-    }
-    
-    //method to draw the "bird" to the game screen, updating its position
-    public void paintComponent(Graphics g){
-        {
-    	super.paintComponent(g); 
-    	Image myImage = Toolkit.getDefaultToolkit().getImage("images/football.gif");
-    	g.drawImage(myImage, 0, 0, this);    	
-        g.fillRect(100,20,70,80);
-        g.setColor(Color.yellow);
-        g.drawString("text on a Panel", 100,150);
-
+    public void reset(){	//called after the bird dies
+		y = Game.HEIGHT / 2;	//resets position, speed, etc.
+		speed = 2;
+	}
+    public void draw(Graphics g){
+       {  
+    	myImage = new ImageIcon("src/images/football.gif");
+        Image im = myImage.getImage();
+    	g.drawImage(im, 0, 0, null);
+        g.drawRect(x, y, 30, 30);
         }
     }
+    //This is called when the bird jumps (on mouse click). sets the speed to -17 
+	public void jump(){
+		speed = - 17;			
+	}
     
-    //method to allow "bird" to "jump" (move upwards) to navigate through the
-    //game board
-    public void jump(){
-        this.setYPos(jumpAmount);
-        //bird.setBounds(x, y, WIDTH, HEIGHT);
-    }
-    
-    //method to change y position of the "bird"
-    private int setYPos(int change){
-      y = y + change;
-      return y;  
-    }
+    //method to change y position of the "bird
+    public Rectangle getBounds(){
+		 return new Rectangle(X, y, DIAMETER, DIAMETER);		//Gives a rectangle used to detect collisions in the Wall class
+		}
 }
-
-
-
-

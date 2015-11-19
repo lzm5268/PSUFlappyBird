@@ -6,7 +6,7 @@ import javax.swing.*;
 public class BirdFrame extends JFrame
 {
 	JPanel birdP;
-        Bird birdy;
+        Bird bird;
         
 	public BirdFrame ()
 	{
@@ -14,11 +14,11 @@ public class BirdFrame extends JFrame
                 birdP = new JPanel();
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(birdP,"Center");
-                birdy = new Bird();
-                getContentPane().add(birdy);
+               
+             //   bird.draw(g);
+                
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize (1050, 1000);
 		setVisible(true);
-                
 	}
 }

@@ -18,7 +18,7 @@ import java.awt.event.*;
 //      startGame()
 
 public class Home extends JPanel {
-    //private JPanel fullPanel;
+    private JPanel fullPanel;
     private JTextField nameField;
     private JButton startButton; 
     private JTextArea directions;
@@ -75,6 +75,7 @@ public class Home extends JPanel {
     }
     
     public void startGame(){
+
         setVisible(false);
         Game g = new Game(); 
      //   fullFrame.dispose(); 
@@ -82,6 +83,15 @@ public class Home extends JPanel {
      //   PipeFrame g = new PipeFrame();
      //   Game g = new Game();
         g.setVisible(true);
+
+
+        setVisible(false);
+   //     Game g = new Game(); 
+        //fullPanel.dispose(); 
+        //Game g = new Game(); 
+        PipeFrame p = new PipeFrame();
+        p.setVisible(true);
+
         
     }
     
