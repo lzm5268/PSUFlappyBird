@@ -42,6 +42,7 @@ public class Game extends JPanel {
     private double topY; 
     private double botY; 
     private double botX;
+    private int score;
     
     Graphics g;
     
