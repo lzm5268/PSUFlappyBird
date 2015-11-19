@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package psuflappybird;
 
 import java.awt.Color;
@@ -17,33 +12,27 @@ import javax.swing.JPanel;
  *
  * @author mzk5401
  */
-public class Coin extends JPanel{
-    
-    private int x;
-    private int y;
+public class Coin extends Rectangle{
+    private int DIAMETER = 25;
+    private int x = ( Game.WIDTH / 2 ) - ( DIAMETER / 2 );		
+    private int y =  Game.HEIGHT / 2;
     private int HEIGHT;
     private int WIDTH;
     public ImageIcon myImage;
-    public Image coin;
-    public Rectangle coinBox;
-    
+    Bird bird;
     public Coin()
     {
-        
+ 
     }
-    
-    
-    public void paitComponent(Graphics g)
-    {
-        //if this doesnt work getr rid of the first forward slash
-        myImage = new ImageIcon(getClass().getResource("/images/penn-state.png"));
-        coin = myImage.getImage();
-        
-        super.paintComponent(g); 
-    	g.drawImage(coin, 0, 0, this);    	
-        g.fillRect(100,20,70,80);
-        g.setColor(Color.blue);
-        g.drawString("text on a Panel", 1500,170);
+   
+    public void draw(Graphics g){ 
+    	myImage = new ImageIcon("src/images/coinLogo.png");
+        Image im = myImage.getImage();
+    	g.drawImage(im, 0, 0, null);
+        g.drawRect(x, y, 30, 30);
     }
-    
+    public Rectangle getBounds(){
+		 return new Rectangle(x, y, DIAMETER, DIAMETER);		
+		}
+   
 }

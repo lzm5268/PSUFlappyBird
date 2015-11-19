@@ -19,12 +19,15 @@ import java.net.*;
 
 public class Bird extends Rectangle{
     
-        ImageIcon myImage;
         private int DIAMETER = 25;					//Diameter of the bird
-	private int X = 300;//( Game.WIDTH / 2 ) - ( DIAMETER / 2 );		//The x position of the bird. Should be exactly centered  
-	private int y =  300;//Game.HEIGHT / 2;				//The STARTING y position of the bird. Will change constantly
+	final private int x = 450;//( Game.WIDTH / 2 ) - ( DIAMETER / 2 );		//The x position of the bird. Should be exactly centered  
+	private int y = 300;//Game.HEIGHT / 2;				//The STARTING y position of the bird. Will change constantly
 	private int acceleration = 1;					//Used in the gravity simulation below
-	private int speed = 2;		
+	private int speed = 2;	
+        Rectangle bird;
+        ImageIcon myImage = new ImageIcon("src/images/football.gif");
+        Image im = myImage.getImage();
+        Graphics g;
     
     public Bird(){
     }
@@ -43,12 +46,10 @@ public class Bird extends Rectangle{
 		y = Game.HEIGHT / 2;	//resets position, speed, etc.
 		speed = 2;
 	}
-    public void draw(Graphics g){
+    public void draw(Graphics g, int x1, int y1){
        {  
-    	myImage = new ImageIcon("src/images/football.gif");
-        Image im = myImage.getImage();
-    	g.drawImage(im, 0, 0, null);
-        g.drawRect(x, y, 30, 30);
+    	g.drawImage(im, x1, y1, null);
+        g.drawRect(x1, y1, 40, 40);
         }
     }
     //This is called when the bird jumps (on mouse click). sets the speed to -17 
@@ -58,7 +59,22 @@ public class Bird extends Rectangle{
     
     //method to change y position of the "bird
     public Rectangle getBounds(){
-		 return new Rectangle(X, y, DIAMETER, DIAMETER);		//Gives a rectangle used to detect collisions in the Wall class
+		 return new Rectangle(x, y, DIAMETER, DIAMETER);		//Gives a rectangle used to detect collisions in the Wall class
 		}
+    
+    public void fall()
+    {
+        y = y - 10;
+        g.drawRect(x, x, 40, 40);
+    }
+    
+    public int getBirdX()
+    {
+        return x;
+    }
+    
+    public int getBirdY()
+    {
+        return y;
+    }
 }
-//

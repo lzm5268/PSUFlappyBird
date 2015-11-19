@@ -25,6 +25,9 @@ public class Game extends JPanel {
     private Pipe p; 
     private Coin c; 
     
+    //new instance of bird
+        Bird bird = new Bird();
+    
     private ArrayList<Rectangle> pipesOnScreenTop = new ArrayList<Rectangle>();
     private ArrayList<Rectangle> pipesOnScreenBot = new ArrayList<Rectangle>();
     
@@ -42,7 +45,8 @@ public class Game extends JPanel {
     private double topY; 
     private double botY; 
     private double botX;
-    private int score;
+    private int birdX;
+    private int birdY;
     
     Graphics g;
     
@@ -65,7 +69,9 @@ public class Game extends JPanel {
         topX = top.getX(); 
         topY = top.getY();
         botX = bottom.getX(); 
-        botY = bottom.getY(); 
+        botY = bottom.getY();
+        birdX = bird.getBirdX();
+        birdY = bird.getBirdY();
         
         pipesOnScreenTop.add(top);
         pipesOnScreenBot.add(bottom);
@@ -85,8 +91,8 @@ public class Game extends JPanel {
                     g.fillRect((int)bottom.getX(), (int)bottom.getY(), (int)bottom.getWidth(), (int)bottom.getHeight());
                     
                     //try to make bird show up on screen
-                    Bird b1 = new Bird();
-                    b1.draw(g);
+                    //Bird b1 = new Bird();
+                        bird.draw(g, birdX, birdY);
                     
                     //if it is the last pipe in the array, and it's moved far enough
                     //make another pipe
@@ -128,6 +134,7 @@ public class Game extends JPanel {
         movePipes.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run(){
+                bird.fall();
                 //want to reset back 
                 //get the Pipe from the array
                 //set top x
@@ -140,6 +147,8 @@ public class Game extends JPanel {
                     bottom = pipesOnScreenBot.get(i);
                     bottom.setLocation((int)bottom.getX()-1, (int)bottom.getY());
                 }
+                
+                
                 
                 gamePanel.repaint();
             }
