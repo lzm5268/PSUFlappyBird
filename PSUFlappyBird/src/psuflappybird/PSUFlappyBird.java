@@ -34,7 +34,6 @@ public class PSUFlappyBird {
        // PipeFrame thisPipeFrame = new PipeFrame();
         
 
-<<<<<<< HEAD
         //PipeFrame thisPipeFrame = new PipeFrame();
         //BirdFrame birdF = new BirdFrame();
 
@@ -46,10 +45,10 @@ public class PSUFlappyBird {
         //h.setVisible(true);
        
         //BirdFrame birdF = new BirdFrame();
-=======
+
         
         BirdFrame birdF = new BirdFrame();
->>>>>>> origin/master
+
 
         
         //thisPipe.draw(g);
