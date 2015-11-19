@@ -85,7 +85,8 @@ public class Game extends JPanel {
                     
                     //if it is the last pipe in the array, and it's moved far enough
                     //make another pipe
-                    if((i == pipesOnScreenTop.size()-1) && top.getX() < 650) {
+                    //number after top.getx() is the space between pipes
+                    if((i == pipesOnScreenTop.size()-1) && top.getX() < 450) {
                         Pipe p = new Pipe(); 
                         p.makeRectangles();
                         top = p.getTopRectangle(); 
@@ -98,7 +99,7 @@ public class Game extends JPanel {
                     if( top.getX() == 0){
                         pipesOnScreenTop.remove(i);
                         pipesOnScreenBot.remove(i);
-                        System.out.println(pipesOnScreenTop.size());
+                        //System.out.println(pipesOnScreenTop.size());
                     }
                     
                 }

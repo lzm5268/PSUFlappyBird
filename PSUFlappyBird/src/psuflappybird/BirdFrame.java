@@ -15,7 +15,11 @@ public class BirdFrame extends JFrame
 		getContentPane().setLayout(new BorderLayout());
 		getContentPane().add(birdP,"Center");
                
+<<<<<<< HEAD
              //   bird.draw(g);
+=======
+                //bird.draw(g);
+>>>>>>> origin/master
                 
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize (1050, 1000);
