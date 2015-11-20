@@ -18,18 +18,17 @@ public class Coin extends Rectangle{
     private int y =  Game.HEIGHT / 2;
     private int HEIGHT;
     private int WIDTH;
-    public ImageIcon myImage;
+    ImageIcon myImage = new ImageIcon("src/images/coinLogo.gif");
+    Image im = myImage.getImage();
     Bird bird;
     public Coin()
     {
  
     }
    
-    public void draw(Graphics g){ 
-    	myImage = new ImageIcon("src/images/coinLogo.png");
-        Image im = myImage.getImage();
-    	g.drawImage(im, 0, 0, null);
-        g.drawRect(x, y, 30, 30);
+    public void draw(Graphics g, int x1, int y1){ 
+    	g.drawImage(im, x1, y1, null);
+        g.drawRect(x1, y1, 20, 20);
     }
     public Rectangle getBounds(){
 		 return new Rectangle(x, y, DIAMETER, DIAMETER);		

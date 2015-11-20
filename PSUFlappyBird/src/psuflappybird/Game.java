@@ -27,6 +27,7 @@ public class Game extends JPanel {
     
     //new instance of bird
         Bird bird = new Bird();
+        Coin coin = new Coin();
     
     private ArrayList<Rectangle> pipesOnScreenTop = new ArrayList<Rectangle>();
     private ArrayList<Rectangle> pipesOnScreenBot = new ArrayList<Rectangle>();
@@ -93,6 +94,7 @@ public class Game extends JPanel {
                     //try to make bird show up on screen
                     //Bird b1 = new Bird();
                         bird.draw(g, birdX, birdY);
+                        coin.draw(g, 30, 30);
                     
                     //if it is the last pipe in the array, and it's moved far enough
                     //make another pipe
@@ -134,7 +136,6 @@ public class Game extends JPanel {
         movePipes.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run(){
-                bird.fall();
                 //want to reset back 
                 //get the Pipe from the array
                 //set top x
@@ -148,9 +149,13 @@ public class Game extends JPanel {
                     bottom.setLocation((int)bottom.getX()-1, (int)bottom.getY());
                 }
                 
+                //make bird fall down from gravity
+                //birdY = birdY - 5;
+                //bird.draw(g, birdX, birdY);
                 
                 
                 gamePanel.repaint();
+                
             }
         }, 20,20);
     }

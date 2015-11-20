@@ -49,7 +49,7 @@ public class Bird extends Rectangle{
     public void draw(Graphics g, int x1, int y1){
        {  
     	g.drawImage(im, x1, y1, null);
-        g.drawRect(x1, y1, 40, 40);
+        g.drawRect(x1, y1, 40, 30);
         }
     }
     //This is called when the bird jumps (on mouse click). sets the speed to -17 
@@ -65,7 +65,7 @@ public class Bird extends Rectangle{
     public void fall()
     {
         y = y - 10;
-        g.drawRect(x, x, 40, 40);
+        g.drawRect(x, x, 40, 30);
     }
     
     public int getBirdX()
