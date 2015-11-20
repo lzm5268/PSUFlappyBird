@@ -17,7 +17,7 @@ import java.util.*;
  *
  * @author jrc5713
  */
-public class Pipe extends JPanel{
+public class Pipe extends Rectangle{
 
     int opening = createOpening();
     int topBound = opening;

@@ -59,13 +59,15 @@ public class Bird extends Rectangle{
     
     //method to change y position of the "bird
     public Rectangle getBounds(){
-		 return new Rectangle(x, y, DIAMETER, DIAMETER);		//Gives a rectangle used to detect collisions in the Wall class
-		}
+    	 return new Rectangle(x, y, DIAMETER, DIAMETER);		//Gives a rectangle used to detect collisions in the Wall class
+    }
     
-    public void fall()
+    public int fall()
     {
-        y = y - 10;
-        g.drawRect(x, x, 40, 30);
+        y = y + 5;
+        this.setLocation(x, y);
+        
+        return y; 
     }
     
     public int getBirdX()

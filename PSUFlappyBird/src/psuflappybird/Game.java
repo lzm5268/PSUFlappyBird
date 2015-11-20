@@ -20,10 +20,6 @@ import java.util.*;
 //using ImageIcons to be the pipes, bird, and foot/iconToCollect
 
 public class Game extends JPanel {
-
-    private Bird b; 
-    private Pipe p; 
-    private Coin c; 
     
     //new instance of bird
         Bird bird = new Bird();
@@ -81,6 +77,11 @@ public class Game extends JPanel {
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
                 
+                //try to make bird show up on screen
+                    //Bird b1 = new Bird();
+                        bird.draw(g, birdX, birdY);
+                        coin.draw(g, 30, 30);
+                        
                 //for all the pipes on the screen
                 for(int i = 0; i < pipesOnScreenTop.size(); i++){
                     //get the top rectangle
@@ -90,12 +91,7 @@ public class Game extends JPanel {
                     //fill the top and bottom boxes
                     g.fillRect((int)top.getX(), (int)top.getY(), (int)top.getWidth(), (int)top.getHeight());
                     g.fillRect((int)bottom.getX(), (int)bottom.getY(), (int)bottom.getWidth(), (int)bottom.getHeight());
-                    
-                    //try to make bird show up on screen
-                    //Bird b1 = new Bird();
-                        bird.draw(g, birdX, birdY);
-                        coin.draw(g, 30, 30);
-                    
+                   
                     //if it is the last pipe in the array, and it's moved far enough
                     //make another pipe
                     //number after top.getx() is the space between pipes
@@ -136,6 +132,17 @@ public class Game extends JPanel {
         movePipes.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run(){
+                
+                for(int i = 0; i < pipesOnScreenBot.size(); i++){
+                    Rectangle r1 = pipesOnScreenBot.get(i);
+                    intersects(r1, bird);
+                }
+                
+                for(int i = 0; i < pipesOnScreenTop.size(); i++){
+                    Rectangle r1 = pipesOnScreenTop.get(i);
+                    intersects(r1, bird);
+                }
+
                 //want to reset back 
                 //get the Pipe from the array
                 //set top x
@@ -152,6 +159,7 @@ public class Game extends JPanel {
                 //make bird fall down from gravity
                 //birdY = birdY - 5;
                 //bird.draw(g, birdX, birdY);
+                birdY = bird.fall(); 
                 
                 
                 gamePanel.repaint();
@@ -159,7 +167,6 @@ public class Game extends JPanel {
             }
         }, 20,20);
     }
-    
     
     public void makeFrame(){
         baseFrame = new JFrame("PSU Flappy Bird");
@@ -172,6 +179,14 @@ public class Game extends JPanel {
         baseFrame.setLocationRelativeTo(null);
         baseFrame.add(gamePanel);
         baseFrame.setVisible(true);
+    }
+    
+    public void intersects(Rectangle r1, Rectangle r2){
+        if(r1.getBounds().intersects(r2.getBounds())){
+            System.out.println("rl and r2 intesect");
+        } else {
+            System.out.println("no intersect");
+        }
     }
    
 }
