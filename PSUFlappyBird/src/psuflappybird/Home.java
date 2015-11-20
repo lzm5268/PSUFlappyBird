@@ -78,22 +78,7 @@ public class Home extends JPanel {
 
         setVisible(false);
         Game g = new Game(); 
-     //   fullFrame.dispose(); 
-        //Game g = new Game(); 
-     //   PipeFrame g = new PipeFrame();
-     //   Game g = new Game();
         g.setVisible(true);
 
-
-        setVisible(false);
-   //     Game g = new Game(); 
-        //fullPanel.dispose(); 
-        //Game g = new Game(); 
-        PipeFrame p = new PipeFrame();
-        p.setVisible(true);
-
-        
-    }
-    
-    
+    } 
 }
