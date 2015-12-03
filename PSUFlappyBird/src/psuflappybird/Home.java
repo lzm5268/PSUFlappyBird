@@ -23,7 +23,7 @@ public class Home extends JPanel {
     private JButton startButton; 
     private JTextArea directions;
     private JPanel directionsPanel = new JPanel();
-    private JPanel startPanel; 
+     JPanel startPanel; 
     
     int x = 900; 
     int y = 500; 
@@ -76,7 +76,8 @@ public class Home extends JPanel {
     
     public void startGame(){
 
-        setVisible(false);
+        //setVisible(false);
+        
         Game g = new Game(); 
         g.setVisible(true);
 

@@ -19,6 +19,7 @@ public class MainFrame extends JFrame{
         
         super ("PSU Flappy Bird");
         
+        setLocationRelativeTo(null);
         setVisible(true);
         setSize(900,600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

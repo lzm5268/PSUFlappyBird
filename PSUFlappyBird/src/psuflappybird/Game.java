@@ -202,6 +202,14 @@ public class Game extends JPanel {
     
     public void intersects(Rectangle r1, Rectangle r2){
         if(r1.getBounds().intersects(r2.getBounds())){
+            
+            gamePanel.setVisible(false);
+            baseFrame.setVisible(false);
+            
+            baseFrame.dispose();
+            
+            
+            
             System.out.println("rl and r2 intesect");
         } else {
             System.out.println("no intersect");
