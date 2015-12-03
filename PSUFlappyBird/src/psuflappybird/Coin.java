@@ -21,6 +21,9 @@ public class Coin extends Rectangle{
     ImageIcon myImage = new ImageIcon("src/images/coinLogo.gif");
     Image im = myImage.getImage();
     Bird bird;
+    
+    Rectangle coin; 
+    
     public Coin()
     {
  
@@ -28,11 +31,18 @@ public class Coin extends Rectangle{
    
     public void draw(Graphics g, int x1, int y1){ 
     	g.drawImage(im, x1, y1, null);
-        g.drawRect(x1, y1, 20, 20);
     }
-    public Rectangle getBounds(){
-	return new Rectangle(x, y, DIAMETER, DIAMETER);		
+    public Rectangle makeCoin(int x, int y){
+        coin = new Rectangle(19, 19, x, y);	
+        
+        return coin;
     }
+    
+    public Rectangle getCoin(){
+        return coin;
+    }
+    
+    
     
 //     public Rectangle getTopRectangle(){
 //        return top;

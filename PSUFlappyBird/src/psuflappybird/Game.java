@@ -28,6 +28,9 @@ public class Game extends JPanel {
     private ArrayList<Rectangle> pipesOnScreenTop = new ArrayList<Rectangle>();
     private ArrayList<Rectangle> pipesOnScreenBot = new ArrayList<Rectangle>();
     
+    private ArrayList<Rectangle> coinsOnScreen = new ArrayList<Rectangle>();
+    
+    
     
     private JFrame baseFrame;
     private JPanel gamePanel; 
@@ -86,7 +89,8 @@ public class Game extends JPanel {
                 //try to make bird show up on screen
                     //Bird b1 = new Bird();
                         bird.draw(g, birdX, birdY);
-                        coin.draw(g, 30, 30);
+                        
+                        
                         
                 //for all the pipes on the screen
                 for(int i = 0; i < pipesOnScreenTop.size(); i++){
@@ -97,6 +101,9 @@ public class Game extends JPanel {
                     //fill the top and bottom boxes
                     g.fillRect((int)top.getX(), (int)top.getY(), (int)top.getWidth(), (int)top.getHeight());
                     g.fillRect((int)bottom.getX(), (int)bottom.getY(), (int)bottom.getWidth(), (int)bottom.getHeight());
+                    
+                    //draw the coin between the pipes
+                    coin.draw(g, (int) bottom.getX() + 30, (int) bottom.getY() - 75);
                    
                     //if it is the last pipe in the array, and it's moved far enough
                     //make another pipe
@@ -107,13 +114,19 @@ public class Game extends JPanel {
                         top = p.getTopRectangle(); 
                         bottom = p.getBottomRectangle();
                         pipesOnScreenTop.add(top);
-                        pipesOnScreenBot.add(bottom);     
+                        pipesOnScreenBot.add(bottom);
+              
+                        
+                        //making the coin
+                        coin.makeCoin((int) top.getX(), (int) top.getY());
+                        coinsOnScreen.add(coin.getCoin());
                     }
                     
                     //if the pipe is off screen, get rid of it in array 
                     if( top.getX() == 0){
                         pipesOnScreenTop.remove(i);
                         pipesOnScreenBot.remove(i);
+                        coinsOnScreen.remove(i); 
                         //System.out.println(pipesOnScreenTop.size());
                     }
                     
@@ -122,6 +135,8 @@ public class Game extends JPanel {
                 g.setColor(Color.yellow);
                 g.fillRect((int)topX, (int)topY, (int)top.getWidth(), (int)top.getHeight());
                 g.fillRect((int)botX, (int)botY, (int)bottom.getWidth(), (int)bottom.getHeight());
+                
+                
             }
         };
         
