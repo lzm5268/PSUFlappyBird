@@ -31,7 +31,15 @@ public class Coin extends Rectangle{
         g.drawRect(x1, y1, 20, 20);
     }
     public Rectangle getBounds(){
-		 return new Rectangle(x, y, DIAMETER, DIAMETER);		
-		}
-   
+	return new Rectangle(x, y, DIAMETER, DIAMETER);		
+    }
+    
+//     public Rectangle getTopRectangle(){
+//        return top;
+//    }
+//    
+//    public Rectangle getBottomRectangle(){
+//        return bottom;
+//    }
+//   
 }
