@@ -53,8 +53,11 @@ public class Bird extends Rectangle{
         }
     }
     //This is called when the bird jumps (on mouse click). sets the speed to -17 
-	public void jump(){
-		speed = - 17;			
+	public int jump(){
+            y = y - 60;
+            this.setLocation(x, y);
+        
+            return y;			
 	}
     
     //method to change y position of the "bird
@@ -64,7 +67,7 @@ public class Bird extends Rectangle{
     
     public int fall()
     {
-        y = y + 5;
+        y = y + 2;
         this.setLocation(x, y);
         
         return y; 

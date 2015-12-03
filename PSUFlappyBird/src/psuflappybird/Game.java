@@ -52,7 +52,9 @@ public class Game extends JPanel {
         makeFrame(); 
         drawPipes();
         addToFrame();
+        processKeys();
         moveThings();
+        
     }
 
     public void drawPipes(){
@@ -76,6 +78,10 @@ public class Game extends JPanel {
         gamePanel = new JPanel() {
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
+                
+                ImageIcon myImage = new ImageIcon("src/images/beaverStadium.jpg");
+                Image im = myImage.getImage();
+                g.drawImage(im, 0, 0, null);
                 
                 //try to make bird show up on screen
                     //Bird b1 = new Bird();
@@ -122,8 +128,6 @@ public class Game extends JPanel {
         gamePanel.setLayout(new FlowLayout());
         gamePanel.setPreferredSize(new Dimension(x, y));
         
-        gamePanel.setBackground(Color.red);
-        
     }
     
 
@@ -142,6 +146,8 @@ public class Game extends JPanel {
                     Rectangle r1 = pipesOnScreenTop.get(i);
                     intersects(r1, bird);
                 }
+                
+               
 
                 //want to reset back 
                 //get the Pipe from the array
@@ -157,8 +163,6 @@ public class Game extends JPanel {
                 }
                 
                 //make bird fall down from gravity
-                //birdY = birdY - 5;
-                //bird.draw(g, birdX, birdY);
                 birdY = bird.fall(); 
                 
                 
@@ -189,4 +193,23 @@ public class Game extends JPanel {
         }
     }
    
+    //action listener for jumping
+    private void processKeys(){
+    KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(
+        new KeyEventDispatcher()  { 
+            public boolean dispatchKeyEvent(KeyEvent e){
+                if(e.getID() == KeyEvent.KEY_PRESSED){
+                    e.getKeyCode();
+                    System.out.println("key pressed");
+                    System.out.println(e.getKeyCode());
+                    if(e.getKeyCode() == 38){
+                        //jumps
+                        birdY = bird.jump();
+                    }
+                }
+                return false;
+            } 
+    });
+}
+    
 }
