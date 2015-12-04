@@ -29,16 +29,17 @@ public class Game extends JPanel {
     private ArrayList<Rectangle> pipesOnScreenBot = new ArrayList<Rectangle>();
     
     private ArrayList<Rectangle> coinsOnScreen = new ArrayList<Rectangle>();
-    
-    
+    private ArrayList<Boolean> coinsVisibility = new ArrayList<Boolean>(); 
     
     private JFrame baseFrame;
     private JPanel gamePanel; 
-    private JPanel resetPanel; 
+    private JPanel resetPanel;
+    JLabel playerScore = new JLabel("Score: ");
     
     Rectangle top; 
     Rectangle bottom;
     
+    int score = 0;
     private int x = 900;
     private int y = 600;
     private double topX; 
@@ -78,6 +79,13 @@ public class Game extends JPanel {
         pipesOnScreenTop.add(top);
         pipesOnScreenBot.add(bottom);
         
+      //  Coin c = new Coin();
+        
+        coin.makeCoin((int) bottom.getX() + 30, (int) bottom.getY() - 75);
+        coinsOnScreen.add(coin.getCoin());
+        
+        coinsVisibility.add(true);
+        
         gamePanel = new JPanel() {
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
@@ -85,6 +93,12 @@ public class Game extends JPanel {
                 ImageIcon myImage = new ImageIcon("src/images/beaverStadium.jpg");
                 Image im = myImage.getImage();
                 g.drawImage(im, 0, 0, null);
+                
+                
+                
+                playerScore.setForeground(Color.white);
+                gamePanel.add(playerScore);
+                        
                 
                 //try to make bird show up on screen
                     //Bird b1 = new Bird();
@@ -103,8 +117,9 @@ public class Game extends JPanel {
                     g.fillRect((int)bottom.getX(), (int)bottom.getY(), (int)bottom.getWidth(), (int)bottom.getHeight());
                     
                     //draw the coin between the pipes
-                    coin.draw(g, (int) bottom.getX() + 30, (int) bottom.getY() - 75);
-                   
+                    if(coinsVisibility.get(i) == true){
+                        coin.draw(g, (int) bottom.getX() + 30, (int) bottom.getY() - 75);
+                    }
                     //if it is the last pipe in the array, and it's moved far enough
                     //make another pipe
                     //number after top.getx() is the space between pipes
@@ -115,11 +130,12 @@ public class Game extends JPanel {
                         bottom = p.getBottomRectangle();
                         pipesOnScreenTop.add(top);
                         pipesOnScreenBot.add(bottom);
-              
                         
                         //making the coin
-                        coin.makeCoin((int) top.getX(), (int) top.getY());
-                        coinsOnScreen.add(coin.getCoin());
+                        Coin c = new Coin(); 
+                        c.makeCoin((int) top.getX(), (int) top.getY());
+                        coinsOnScreen.add(c.getCoin());
+                        coinsVisibility.add(true);
                     }
                     
                     //if the pipe is off screen, get rid of it in array 
@@ -127,6 +143,7 @@ public class Game extends JPanel {
                         pipesOnScreenTop.remove(i);
                         pipesOnScreenBot.remove(i);
                         coinsOnScreen.remove(i); 
+                        coinsVisibility.remove(i);
                         //System.out.println(pipesOnScreenTop.size());
                     }
                     
@@ -135,6 +152,7 @@ public class Game extends JPanel {
                 g.setColor(Color.yellow);
                 g.fillRect((int)topX, (int)topY, (int)top.getWidth(), (int)top.getHeight());
                 g.fillRect((int)botX, (int)botY, (int)bottom.getWidth(), (int)bottom.getHeight());
+                
                 
                 
             }
@@ -154,14 +172,25 @@ public class Game extends JPanel {
                 
                 for(int i = 0; i < pipesOnScreenBot.size(); i++){
                     Rectangle r1 = pipesOnScreenBot.get(i);
-                    intersects(r1, bird);
+                    intersectsPipes(r1, bird);
                 }
                 
                 for(int i = 0; i < pipesOnScreenTop.size(); i++){
                     Rectangle r1 = pipesOnScreenTop.get(i);
-                    intersects(r1, bird);
+                    intersectsPipes(r1, bird);
                 }
                 
+                for(int i = 0; i < coinsOnScreen.size(); i++){
+                    if(coinsVisibility.get(i) == true){                      
+                        Rectangle r1 = coinsOnScreen.get(i);
+                        intersectsCoins(r1, bird, i);
+                    } else {
+                        if (i + 1 < coinsOnScreen.size()){ 
+                            Rectangle r1 = coinsOnScreen.get(i + 1);
+                            intersectsCoins(r1, bird, i);
+                        }
+                    }
+                }
                
 
                 //want to reset back 
@@ -174,8 +203,17 @@ public class Game extends JPanel {
                     top.setLocation((int)top.getX()-1, (int)top.getY());
                     //move the bot rectangle
                     bottom = pipesOnScreenBot.get(i);
+                    
+                     //update coins
+                   Rectangle coin = coinsOnScreen.get(i);
+                   coin.setLocation((int) bottom.getX() + 30, (int) bottom.getY() - 75);
+                    
                     bottom.setLocation((int)bottom.getX()-1, (int)bottom.getY());
+                    
+                   
                 }
+                
+               
                 
                 //make bird fall down from gravity
                 birdY = bird.fall(); 
@@ -200,14 +238,26 @@ public class Game extends JPanel {
         baseFrame.setVisible(true);
     }
     
-    public void intersects(Rectangle r1, Rectangle r2){
+    public void intersectsPipes(Rectangle r1, Rectangle r2){
         if(r1.getBounds().intersects(r2.getBounds())){
-            System.out.println("rl and r2 intesect");
+       //     System.out.println("rl and r2 intesect");
         } else {
-            System.out.println("no intersect");
+          //  System.out.println("no intersect");
         }
     }
    
+       public void intersectsCoins(Rectangle r1, Rectangle r2, int i){
+        if(r1.getBounds().intersects(r2.getBounds())){
+            System.out.println("COIN AND BIRD HIT");
+            score++;
+            coinsVisibility.set(i, false);
+            playerScore.setText("Score: "+score);
+        } else {
+           // score++;
+         //   System.out.println("coin not hit");
+        }
+    }
+    
     //action listener for jumping
     private void processKeys(){
     KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(
@@ -215,8 +265,8 @@ public class Game extends JPanel {
             public boolean dispatchKeyEvent(KeyEvent e){
                 if(e.getID() == KeyEvent.KEY_PRESSED){
                     e.getKeyCode();
-                    System.out.println("key pressed");
-                    System.out.println(e.getKeyCode());
+                   // System.out.println("key pressed");
+                   // System.out.println(e.getKeyCode());
                     if(e.getKeyCode() == 38){
                         //jumps
                         birdY = bird.jump();
