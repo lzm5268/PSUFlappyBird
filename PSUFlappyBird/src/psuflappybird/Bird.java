@@ -31,25 +31,16 @@ public class Bird extends Rectangle{
     
     public Bird(){
     }
-    public void Gravity(){
-        //only moves if the bird is between the top and bottom of the window
-		if ( ( y > 0 ) && ( y < Game.HEIGHT )) {
-			speed += acceleration;	//the gravity,the speed is just increased by 1 all the time, even after a jump
-			y += speed;	//The actual movement, y location equals (where it was) + (how far it should go)
-		}
-		//or else the game resets
-		else {
-			reset();											//rests bird's postion									//bird is dead! This is used in the Main method to reset the walls after a death
-		}
-    }
+    
     public void reset(){	//called after the bird dies
-		y = Game.HEIGHT / 2;	//resets position, speed, etc.
-		speed = 2;
-	}
+	y = Game.HEIGHT / 2;	//resets position, speed, etc.
+	speed = 2;
+    }
+    
     public void draw(Graphics g, int x1, int y1){
        {  
-    	g.drawImage(im, x1, y1, null);
-        g.drawRect(x1, y1, 40, 30);
+            g.drawImage(im, x1, y1, null);
+            g.drawRect(x1, y1, 40, 30);
         }
     }
     //This is called when the bird jumps (on mouse click). sets the speed to -17 

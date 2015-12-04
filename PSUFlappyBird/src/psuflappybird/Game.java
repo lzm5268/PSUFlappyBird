@@ -48,6 +48,8 @@ public class Game extends JPanel {
     private int birdX;
     private int birdY;
     
+    private JLabel score;
+    
     Graphics g;
     
 
@@ -82,13 +84,19 @@ public class Game extends JPanel {
             public void paintComponent(Graphics g){
                 super.paintComponent(g);
                 
+                //add Beaver Stadium as the background
                 ImageIcon myImage = new ImageIcon("src/images/beaverStadium.jpg");
                 Image im = myImage.getImage();
                 g.drawImage(im, 0, 0, null);
                 
+                //create a JLabel to display the score
+                score = new JLabel("Score:");
+                score.setForeground(Color.white);
+                gamePanel.add(score);
+                
                 //try to make bird show up on screen
-                    //Bird b1 = new Bird();
-                        bird.draw(g, birdX, birdY);
+                //Bird b1 = new Bird();
+                bird.draw(g, birdX, birdY);
                         
                         
                         
@@ -207,11 +215,10 @@ public class Game extends JPanel {
             baseFrame.setVisible(false);
             
             baseFrame.dispose();
-            
-            
-            
+           
             System.out.println("rl and r2 intesect");
-        } else {
+        } 
+        else {
             System.out.println("no intersect");
         }
     }
